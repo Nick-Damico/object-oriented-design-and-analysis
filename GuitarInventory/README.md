@@ -97,3 +97,19 @@ Possible Solution: Move comparison of specs to another class or the `Spec` class
 It is a manual device and the owners are pressing it when the dog barks, the dog could be barking for no reason.
 The door should probably automatically open when the dog approaches and closes when it goes through.
 It should only open authorized animals like the Dog.
+
+## Chapter 4
+
+Add Suport for Mandolins to Ricks Search Tool
+
+- Inventory is too tightly coupled to a Single Type of Instrument with Methods like: `addGuitar(), getGuitar(), search(GuitarSpec)`
+- We need to abstract these to be more **flexible** to handle other types of **Instruments** in the future.
+- Search needs to be able to handle other types of `Specs` not just `GuitarSpecs`.
+
+Guitar and Mandolin share commonality:
+
+- Create an abstract Instrument Class, abstract as we would not instantiate the Instrument class only the concrete implementations.
+
+Spec should probably turn into an abstract too InstrumentSpec
+
+- GuitarSpec && MandolinSpec

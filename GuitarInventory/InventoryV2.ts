@@ -8,17 +8,11 @@ namespace GuitarInventoryV2 {
     }
 
     addInstrument(
-      instrumentType: InstrumentType,
       serialNumber: string,
       price: number,
       spec: InstrumentSpec
     ): void {
-      let newInstrument = new Instrument(
-        instrumentType,
-        serialNumber,
-        price,
-        spec
-      )
+      let newInstrument = new Instrument(serialNumber, price, spec)
 
       this.instruments.push(newInstrument)
     }
@@ -90,7 +84,7 @@ namespace GuitarInventoryV2 {
     a = 'A',
     f = 'F'
   }
-  enum Type {
+  enum InstrumentType {
     guitar = 'Guitar',
     banjo = 'Banjo',
     dobro = 'Dobro',
@@ -99,18 +93,11 @@ namespace GuitarInventoryV2 {
   }
 
   type InstrumentProperties = {
-    type: Type
+    type: InstrumentType
     builder: Builder
     wood: Wood
     style?: Style
     guitarType?: GuitarType
-  }
-
-  const guitarSpec: InstrumentProperties = {
-    type: Type.guitar,
-    builder: Builder.fender,
-    wood: Wood.alder,
-    guitarType: GuitarType.acustic
   }
 
   class InstrumentSpec {
@@ -138,4 +125,22 @@ namespace GuitarInventoryV2 {
       return true
     }
   }
+
+  /**
+   * Example of Usage
+   *
+   * Creating a Guitar
+   * const guitarProperties: InstrumentProperties = {
+   *   type: InstrumentType.guitar,
+   *   builder: Builder.fender,
+   *   wood: Wood.alder,
+   *   guitarType: GuitarType.acustic
+   * const guitarSpec: InstrumentSpec = new InstrumentSpec(guitarProperties)
+   * }
+   * const newGuitar: Instrument = new Instrument(
+   *  crypto.randomUUID(),
+   *  2000,
+   * guitarSpec
+   * )
+   */
 }
