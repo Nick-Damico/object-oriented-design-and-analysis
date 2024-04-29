@@ -12,22 +12,38 @@ jest.useFakeTimers()
 
 const inventory = new Inventory()
 
+beforeAll(() => {
+  const fenderProperties: InstrumentProperties = {
+    type: InstrumentType.guitar,
+    builder: Builder.fender,
+    backWood: Wood.indianRoseWood,
+    sideWood: Wood.indianRoseWood,
+    topWood: Wood.spruce
+  }
+  inventory.addInstrument(
+    '123456',
+    2000.0,
+    new InstrumentSpec(fenderProperties)
+  )
+})
+
 describe('#instrumentCount', () => {
   it('returns inventory total count', () => {
-    const guitarProperties: InstrumentProperties = {
-      type: InstrumentType.guitar,
-      builder: Builder.collings,
-      backWood: Wood.indianRoseWood,
-      sideWood: Wood.indianRoseWood,
-      topWood: Wood.spruce
-    }
-    inventory.addInstrument(
-      '11277',
-      3999.95,
-      new InstrumentSpec(guitarProperties)
-    )
-
     expect(inventory.instrumentCount()).toEqual(1)
+  })
+})
+
+describe('#get(serialNumber: string', () => {
+  describe('Instrument Not Found', () => {
+    it('returns null', () => {
+      expect(inventory.get('badSerialNumber')).toBe(null)
+    })
+  })
+
+  describe('Instrument Found', () => {
+    it('returns instrument', () => {
+      expect(inventory.get('123456')).toBeInstanceOf(Instrument)
+    })
   })
 })
 
