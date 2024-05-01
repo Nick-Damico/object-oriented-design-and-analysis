@@ -124,7 +124,7 @@ export class InstrumentSpec {
   }
 
   matches(spec: InstrumentSpec): boolean {
-    for (const property in spec.getProperties()) {
+    for (const property of spec.getProperties().keys()) {
       if (spec.getProperty(property) !== this.getProperty(property)) {
         return false
       }
