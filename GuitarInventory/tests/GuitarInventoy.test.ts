@@ -29,31 +29,33 @@ beforeAll(() => {
   console.log('hello')
 })
 
-describe('#instrumentCount', () => {
-  it('returns inventory total count', () => {
-    expect(inventory.instrumentCount()).toEqual(1)
-  })
-})
-
-describe('#get(serialNumber: string', () => {
-  describe('Instrument Not Found', () => {
-    it('returns null', () => {
-      expect(inventory.get('badSerialNumber')).toBe(null)
+describe('Instrument', () => {
+  describe('#instrumentCount', () => {
+    it('returns inventory total count', () => {
+      expect(inventory.instrumentCount()).toEqual(1)
     })
   })
 
-  describe('Instrument Found', () => {
-    it('returns instrument', () => {
-      expect(inventory.get('SN-123456')).toBeInstanceOf(Instrument)
+  describe('#get(serialNumber: string', () => {
+    describe('Instrument Not Found', () => {
+      it('returns null', () => {
+        expect(inventory.get('badSerialNumber')).toBe(null)
+      })
+    })
+
+    describe('Instrument Found', () => {
+      it('returns instrument', () => {
+        expect(inventory.get('SN-123456')).toBeInstanceOf(Instrument)
+      })
     })
   })
-})
 
-describe('#search', () => {
-  it('returns a collection of matching Instruments', () => {
-    const matchingSpec = new InstrumentSpec(fenderProperties)
-    const matchingInstruments = inventory.search(matchingSpec)
+  describe('#search', () => {
+    it('returns a collection of matching Instruments', () => {
+      const matchingSpec = new InstrumentSpec(fenderProperties)
+      const matchingInstruments = inventory.search(matchingSpec)
 
-    expect(matchingInstruments.length).toEqual(1)
+      expect(matchingInstruments.length).toEqual(1)
+    })
   })
 })
