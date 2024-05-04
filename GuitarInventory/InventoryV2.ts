@@ -103,7 +103,7 @@ export type InstrumentProperties = {
   builder: Builder
   backWood: Wood
   sideWood: Wood
-  topWood: Wood
+  topWood?: Wood
   style?: Style
   guitarType?: GuitarType
 }
