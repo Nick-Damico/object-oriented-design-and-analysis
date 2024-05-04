@@ -19,14 +19,41 @@ const fenderProperties: InstrumentProperties = {
   topWood: Wood.spruce
 }
 
+// Mandolins
+const gibsonMandolinProps: InstrumentProperties = {
+  type: InstrumentType.mandolin,
+  guitarType: GuitarType.acustic,
+  builder: Builder.gibson,
+  backWood: Wood.maple,
+  topWood: Wood.maple,
+  sideWood: Wood.maple
+}
+
+// Banjos
+const gibsonBanjoProps: InstrumentProperties = {
+  type: InstrumentType.banjo,
+  guitarType: GuitarType.acustic,
+  builder: Builder.gibson,
+  sideWood: Wood.maple,
+  backWood: Wood.maple
+}
+
 beforeAll(() => {
+  inventory.addInstrument(
+    'SN-91019920',
+    5495.99,
+    new InstrumentSpec(gibsonMandolinProps)
+  )
   inventory.addInstrument(
     'SN-123456',
     2000.0,
     new InstrumentSpec(fenderProperties)
   )
-
-  console.log('hello')
+  inventory.addInstrument(
+    'NS-8900231',
+    2945.95,
+    new InstrumentSpec(gibsonBanjoProps)
+  )
 })
 
 describe('Instrument', () => {
