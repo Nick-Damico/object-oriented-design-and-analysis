@@ -59,7 +59,7 @@ beforeAll(() => {
 describe('Instrument', () => {
   describe('#instrumentCount', () => {
     it('returns inventory total count', () => {
-      expect(inventory.instrumentCount()).toEqual(1)
+      expect(inventory.instrumentCount()).toEqual(3)
     })
   })
 
@@ -69,14 +69,13 @@ describe('Instrument', () => {
         expect(inventory.get('badSerialNumber')).toBe(null)
       })
     })
-
-    describe('Instrument Found', () => {
-      it('returns instrument', () => {
-        expect(inventory.get('SN-123456')).toBeInstanceOf(Instrument)
-      })
-    })
   })
 
+  describe('Instrument Found', () => {
+    it('returns instrument', () => {
+      expect(inventory.get('SN-123456')).toBeInstanceOf(Instrument)
+    })
+  })
   describe('#search', () => {
     it('returns a collection of matching Instruments', () => {
       const matchingSpec = new InstrumentSpec(fenderProperties)

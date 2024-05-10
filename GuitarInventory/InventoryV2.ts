@@ -33,8 +33,9 @@ export default class Inventory {
   search(spec: InstrumentSpec): Instrument[] {
     const matchingInstruments: Instrument[] = new Array()
     for (const instrument of this.instruments) {
-      if (instrument.getSpec().matches(spec))
+      if (instrument.getSpec().matches(spec)) {
         matchingInstruments.push(instrument)
+      }
     }
     return matchingInstruments
   }
