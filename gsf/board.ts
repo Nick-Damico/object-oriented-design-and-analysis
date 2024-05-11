@@ -14,8 +14,8 @@ class Board {
   constructor(width: number, height: number) {
     this._width = width
     this._height = height
-    this._board = Array.from(Array(width), () =>
-      new Array(height).fill(new TerrainTile())
+    this._board = Array.from(Array(height), () =>
+      new Array(width).fill(new TerrainTile())
     )
   }
 
