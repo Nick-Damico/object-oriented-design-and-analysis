@@ -1,19 +1,14 @@
-import { iUnit } from './unit'
+import Unit from './unit'
 
-export interface Tile {
+export class Tile {
   type: string
-  unit?: iUnit
-}
-
-export class TerrainTile {
-  type: string
-  unit: iUnit
+  unit: Unit
 
   constructor() {
     this.type = 'Terrain'
   }
 
-  setUnit(unit: iUnit): void {
+  setUnit(unit: Unit): void {
     this.unit = unit
   }
 }
