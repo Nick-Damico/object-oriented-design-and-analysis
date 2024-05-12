@@ -1,4 +1,4 @@
-import { Tile, TerrainTile } from './tile'
+import Unit from './unit'
 
 class Board {
   private _width: number
