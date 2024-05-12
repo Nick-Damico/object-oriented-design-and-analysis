@@ -32,7 +32,12 @@ class Board {
     return this._board
   }
 
-  public addUnit(tile: Tile, unit: Unit): void {
+  public getTile(x: number, y: number): Tile {
+    return this.getBoard()[x][y]
+  }
+
+  public addUnit(unit: Unit, x: number, y: number): void {
+    let tile = this.getTile(x, y)
     tile.setUnit(unit)
   }
 }
