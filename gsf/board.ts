@@ -1,3 +1,4 @@
+import { Tile } from './tile'
 import Unit from './unit'
 
 class Board {
@@ -14,8 +15,12 @@ class Board {
   constructor(width: number, height: number) {
     this._width = width
     this._height = height
-    this._board = Array.from(Array(height), () =>
-      new Array(width).fill(new TerrainTile())
+    this.init()
+  }
+
+  private init() {
+    this._board = Array.from(Array(this.getHeight()), () =>
+      new Array(this.getWidth()).fill(new Tile())
     )
   }
 
@@ -25,5 +30,9 @@ class Board {
 
   public getBoard(): Tile[][] {
     return this._board
+  }
+
+  public addUnit(tile: Tile, unit: Unit): void {
+    tile.setUnit(unit)
   }
 }
