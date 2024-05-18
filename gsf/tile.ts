@@ -9,9 +9,18 @@ export class Tile {
     this._type = 'Terrain'
     this._units = []
   }
+
+  getType(): string {
+    return this._type
   }
 
-  setUnit(unit: Unit): void {
-    this.unit = unit
+  public setUnit(unit: Unit): void {
+    this._units.push(unit)
+  }
+
+  getUnits(): Unit[] {
+    return this._units
+  }
+
   }
 }
