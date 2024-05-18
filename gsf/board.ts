@@ -1,7 +1,7 @@
 import { Tile } from './tile'
 import Unit from './unit'
 
-class Board {
+export class Board {
   private _width: number
   private _height: number
   private _board: Tile[][]
@@ -24,8 +24,12 @@ class Board {
     )
   }
 
-  public getTile(posX: number, posY: number): Tile {
-    return this.getBoard()[posY][posX]
+  public getHeight(): number {
+    return this._height
+  }
+
+  public getWidth(): number {
+    return this._width
   }
 
   public getBoard(): Tile[][] {
