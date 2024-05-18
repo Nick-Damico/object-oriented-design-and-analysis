@@ -1,11 +1,14 @@
 import Unit from './unit'
 
 export class Tile {
-  type: string
-  unit: Unit
+  private _type: string
+  // private _units: Map<string, Unit[]>
+  private _units: Unit[]
 
   constructor() {
-    this.type = 'Terrain'
+    this._type = 'Terrain'
+    this._units = []
+  }
   }
 
   setUnit(unit: Unit): void {
