@@ -42,6 +42,15 @@ export class Board {
 
   public addUnit(unit: Unit, x: number, y: number): void {
     let tile = this.getTile(x, y)
-    tile.setUnit(unit)
+  }
+
+  public removeUnit(unit: Unit, x: number, y: number): void {
+    let tile = this.getTile(x, y)
+    tile.removeUnit(unit)
+  }
+
+  public removeUnits(x: number, y: number): void {
+    let tile = this.getTile(x, y)
+    tile.removeUnits()
   }
 }
