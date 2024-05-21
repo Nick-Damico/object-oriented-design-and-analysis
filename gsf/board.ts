@@ -37,7 +37,8 @@ export class Board {
   }
 
   public getTile(x: number, y: number): Tile {
-    return this.getBoard()[x][y]
+    return this.getBoard()[x - 1][y - 1]
+  }
   }
 
   public addUnit(unit: Unit, x: number, y: number): void {
