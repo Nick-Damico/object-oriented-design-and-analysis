@@ -43,6 +43,7 @@ export class Board {
 
   public addUnit(unit: Unit, x: number, y: number): void {
     let tile = this.getTile(x, y)
+    tile.addUnit(unit)
   }
 
   public removeUnit(unit: Unit, x: number, y: number): void {
