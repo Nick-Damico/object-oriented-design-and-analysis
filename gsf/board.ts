@@ -39,6 +39,10 @@ export class Board {
   public getTile(x: number, y: number): Tile {
     return this.getBoard()[x - 1][y - 1]
   }
+
+  public getUnits(x: number, y: number): Unit[] {
+    let tile = this.getTile(x, y)
+    return tile.getUnits()
   }
 
   public addUnit(unit: Unit, x: number, y: number): void {
