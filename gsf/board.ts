@@ -13,9 +13,7 @@ export class Board {
   }
 
   private init() {
-    this._board = Array.from(Array(this.getHeight()), () =>
-      new Array(this.getWidth()).fill(new Tile())
-    )
+    this._buildBoard(this.getHeight(), this.getWidth())
   }
 
   public getHeight(): number {
@@ -52,5 +50,25 @@ export class Board {
   public removeUnits(x: number, y: number): void {
     let tile = this.getTile(x, y)
     tile.removeUnits()
+  }
+
+  private _buildBoard(height: number, width: number) {
+    for (let row = 0; row < height; row++) {
+      this._board[row] = []
+
+      for (let column = 0; column < width; column++) {
+        this._board[row][column] = new Tile()
+      }
+    }
+  }
+
+  private _altBuildBoard(height: number, width: number) {
+    for (let row = 0; row < height; row++) {
+      this._board[row] = []
+
+      for (let column = 0; column < width; column++) {
+        this._board[row][column] = new Tile()
+      }
+    }
   }
 }
