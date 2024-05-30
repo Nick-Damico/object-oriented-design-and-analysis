@@ -1,13 +1,17 @@
 import Unit from './unit'
 
-export class Tile {
+export enum Type {}
+
+export default class Tile {
   // private _units: Map<string, Unit[]>
   private _units: Unit[]
+  private _type: Type
 
   // Does Order matter on units?
   // We might want to implement with a Queue or Stack
-  constructor() {
+  constructor(type: Type) {
     this._units = []
+    this._type = type
   }
 
   public addUnit(unit: Unit): void {
@@ -16,6 +20,10 @@ export class Tile {
 
   public getUnits(): Unit[] {
     return this._units
+  }
+
+  public getType(): Type {
+    return this._type
   }
 
   public removeUnit(unit: Unit): void {
