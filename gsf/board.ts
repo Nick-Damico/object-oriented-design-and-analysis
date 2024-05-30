@@ -1,4 +1,4 @@
-import { Tile } from './tile'
+import Tile, { Type } from './tile'
 import Unit from './unit'
 
 export class Board {
@@ -10,6 +10,8 @@ export class Board {
     this._width = width
     this._height = height
     this.init()
+
+    console.log({ board: this._board })
   }
 
   private init() {
@@ -30,6 +32,10 @@ export class Board {
 
   public getTile(x: number, y: number): Tile {
     return this.getBoard()[x - 1][y - 1]
+  }
+
+  public getTileType(x: number, y: number): Type {
+    return this.getTile(x, y).getType()
   }
 
   public getUnits(x: number, y: number): Unit[] {
@@ -72,3 +78,5 @@ export class Board {
     }
   }
 }
+
+new Board(10, 10)
