@@ -1,4 +1,4 @@
-import Tile, { Type } from './tile'
+import Tile, { TileType } from './tile'
 import Unit from './unit'
 
 export class Board {
@@ -34,7 +34,7 @@ export class Board {
     return this.getBoard()[x - 1][y - 1]
   }
 
-  public getTileType(x: number, y: number): Type {
+  public getTileType(x: number, y: number): TileType {
     return this.getTile(x, y).getType()
   }
 
