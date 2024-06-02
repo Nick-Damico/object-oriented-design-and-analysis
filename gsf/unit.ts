@@ -6,7 +6,19 @@ export default class Unit {
 
   constructor(type: Type) {
     this._properties = new Map()
+    this.setType(type)
+  }
+
+  setType(type: Type): void {
     this._type = type
+  }
+
+  getType(): Type {
+    return this._type
+  }
+
+  setProperty(property: string, value: number | string) {
+    this._properties.set(property, value)
   }
 
   getProperty(property: string): number | string | undefined {
