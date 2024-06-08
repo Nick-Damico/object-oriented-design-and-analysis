@@ -13,8 +13,8 @@ export default class Unit {
   private _weapons: Weapon[]
   private _properties: Map<string, any>
 
-  constructor(type: UnitType) {
-    this._id = crypto.randomUUID()
+  constructor(type: UnitType, id?: string) {
+    this._id = id || crypto.randomUUID()
     this.setType(type)
     this._properties = new Map()
   }

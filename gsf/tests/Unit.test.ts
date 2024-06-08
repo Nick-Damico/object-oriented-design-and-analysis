@@ -17,7 +17,14 @@ describe('Unit', () => {
       expect(infantryUnit.getType()).toEqual(UnitType.infantry)
     })
 
-    it('generates and sets the Unit id', () => {
+    it('accepts an optional ID value', () => {
+      let expectedId = crypto.randomUUID()
+      const newUnit = new Unit(UnitType.infantry, expectedId)
+
+      expect(newUnit.getId()).toEqual(expectedId)
+    })
+
+    it('generates an ID if one is not supplied', () => {
       expect(infantryUnit.getId()).toBeDefined
     })
 
