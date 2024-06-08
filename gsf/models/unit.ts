@@ -39,6 +39,14 @@ export default class Unit {
     return this._name
   }
 
+  addWeapon(weapon: Weapon): void {
+    this._weapons.push(weapon)
+  }
+
+  getWeapons(): Weapon[] {
+    return this._weapons
+  }
+
   setProperty(property: string, value: any) {
     this._properties.set(property, value)
   }
