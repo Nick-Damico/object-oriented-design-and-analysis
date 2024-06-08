@@ -2,13 +2,25 @@ export enum UnitType {
   infantry = 'Infantry'
 }
 
-export default class Unit {
-  private _properties: Map<string, number | string>
-  private _type: UnitType
+// Replace with Class
+export enum Weapon {}
 
-  constructor(type: UnitType) {
-    this._properties = new Map()
+export default class Unit {
+  private _id: number
+  private _type: UnitType
+  private _name: string
+
+  private _weapons: Weapon[]
+  private _properties: Map<string, any>
+
+  constructor(id: number, type: UnitType) {
+    this._id = id
     this.setType(type)
+    this._properties = new Map()
+  }
+
+  getId(): number {
+    return this._id
   }
 
   setType(type: UnitType): void {
@@ -19,15 +31,23 @@ export default class Unit {
     return this._type
   }
 
-  setProperty(property: string, value: number | string) {
+  setName(name: string): void {
+    this._name = name
+  }
+
+  getName(): string {
+    return this._name
+  }
+
+  setProperty(property: string, value: any) {
     this._properties.set(property, value)
   }
 
-  getProperty(property: string): number | string | undefined {
+  getProperty(property: string): any {
     return this.getProperties().get(property)
   }
 
-  getProperties(): Map<string, number | string> {
+  getProperties(): Map<string, any> {
     return this._properties
   }
 }
