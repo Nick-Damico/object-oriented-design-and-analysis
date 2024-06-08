@@ -6,20 +6,20 @@ export enum UnitType {
 export enum Weapon {}
 
 export default class Unit {
-  private _id: number
+  private _id: string
   private _type: UnitType
   private _name: string
 
   private _weapons: Weapon[]
   private _properties: Map<string, any>
 
-  constructor(id: number, type: UnitType) {
-    this._id = id
+  constructor(type: UnitType) {
+    this._id = crypto.randomUUID()
     this.setType(type)
     this._properties = new Map()
   }
 
-  getId(): number {
+  getId(): string {
     return this._id
   }
 
