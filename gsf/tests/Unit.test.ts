@@ -1,4 +1,4 @@
-import Unit, { UnitType } from '../models/unit'
+import Unit, { UnitType, Weapon } from '../models/unit'
 
 // jest.useFakeTimers()
 let infantryUnit
@@ -53,6 +53,21 @@ describe('Unit', () => {
       expect(infantryUnit.getName()).toBe(expectedName)
     })
   })
+
+  describe('ID', () => {
+    it('allows getting the ID', () => {
+      expect(infantryUnit.getId()).toBeDefined
+    })
+  })
+
+  describe('Weapons', () => {
+    it('allows setting and getting', () => {
+      infantryUnit.addWeapon(Weapon.rifle)
+
+      expect(infantryUnit.getWeapons()).toContain(Weapon.rifle)
+    })
+  })
+
   describe('Properties', () => {
     it('allows creating a custom property with value', () => {
       const startingHitPoints = 25

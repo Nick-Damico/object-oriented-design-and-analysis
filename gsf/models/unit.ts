@@ -4,7 +4,9 @@ export enum UnitType {
 }
 
 // Replace with Class
-export enum Weapon {}
+export enum Weapon {
+  rifle = 'Rifle'
+}
 
 export default class Unit {
   private _id: string
@@ -41,6 +43,10 @@ export default class Unit {
   }
 
   addWeapon(weapon: Weapon): void {
+    if (this._weapons === undefined) {
+      this._weapons = []
+    }
+
     this._weapons.push(weapon)
   }
 
