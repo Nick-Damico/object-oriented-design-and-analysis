@@ -1,5 +1,6 @@
 export enum UnitType {
-  infantry = 'Infantry'
+  infantry = 'Infantry',
+  knight = 'Knight'
 }
 
 // Replace with Class
