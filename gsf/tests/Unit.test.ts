@@ -53,6 +53,8 @@ describe('Unit', () => {
       expect(infantryUnit.getName()).toBe(expectedName)
     })
   })
+  describe('Properties', () => {
+    it('allows creating a custom property with value', () => {
       const startingHitPoints = 25
 
       infantryUnit.setProperty('hitPoints', startingHitPoints)
@@ -60,7 +62,7 @@ describe('Unit', () => {
       expect(infantryUnit.getProperty('hitPoints')).toBe(startingHitPoints)
     })
 
-    it('allows updating a properties value', () => {
+    it('allows updating the custom property value', () => {
       const startingHitPoints = 25
       const updateHitPoints = 10
 
