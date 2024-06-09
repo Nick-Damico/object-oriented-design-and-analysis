@@ -60,7 +60,7 @@ export default class Unit {
 
   getProperty(property: string): any {
     if (!this.getProperties().has(property)) {
-      return null
+      throw new Error(`property ${property} does not exist`)
     }
 
     return this.getProperties().get(property)

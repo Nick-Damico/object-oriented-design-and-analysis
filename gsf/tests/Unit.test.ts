@@ -88,8 +88,10 @@ describe('Unit', () => {
       expect(infantryUnit.getProperty('hitPoints')).toBe(updateHitPoints)
     })
 
-    it('returns null if accessing a non-existent property', () => {
-      expect(infantryUnit.getProperty('foo')).toBeNull
+    it('raises an error if accessing a non-existent property', () => {
+      expect(() => {
+        infantryUnit.getProperty('foo')
+      }).toThrow('property foo does not exist')
     })
   })
 })
