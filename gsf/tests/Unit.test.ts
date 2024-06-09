@@ -34,8 +34,25 @@ describe('Unit', () => {
     })
   })
 
-  describe('Unit properties', () => {
-    it('allows setting a custom property and value on a Unit', () => {
+  describe('Type', () => {
+    it('allows setting and getting the type', () => {
+      let existingUnit = infantryUnit
+
+      existingUnit.setType(UnitType.knight)
+
+      expect(existingUnit.getType()).toBe(UnitType.knight)
+    })
+  })
+
+  describe('Name', () => {
+    it('allows setting and getting the name', () => {
+      let expectedName = 'Sam'
+
+      infantryUnit.setName(expectedName)
+
+      expect(infantryUnit.getName()).toBe(expectedName)
+    })
+  })
       const startingHitPoints = 25
 
       infantryUnit.setProperty('hitPoints', startingHitPoints)
