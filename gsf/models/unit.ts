@@ -53,6 +53,10 @@ export default class Unit {
   }
 
   getProperty(property: string): any {
+    if (!this.getProperties().has(property)) {
+      return null
+    }
+
     return this.getProperties().get(property)
   }
 
