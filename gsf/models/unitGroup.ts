@@ -3,13 +3,13 @@ import Unit from './unit'
 type UnitMap = Map<string, Unit>
 
 class UnitGroup {
-  private _units: Unit[]
+  private _units: UnitMap
   private _name: string
   private _size: number
 
   constructor(name: string) {
     this._name = name
-    this._units = []
+    this._units = new Map()
     this._size = 0
   }
 
@@ -21,7 +21,7 @@ class UnitGroup {
     this._name = name
   }
 
-  getUnits(): Unit[] {
+  getUnits(): UnitMap {
     return this._units
   }
 
@@ -30,15 +30,12 @@ class UnitGroup {
   }
 
   addUnit(unit: Unit) {
-    this.getUnits().push(unit)
+    this.getUnits().set(unit.getId(), unit)
     ++this._size
   }
 
   removeUnit(unit: Unit): void {
-    if (!this.getUnits().includes(unit)) return
-
-    let unitIndex = this.getUnits().indexOf(unit)
-    this.getUnits().splice(unitIndex, 1)
+    this.getUnits().delete(unit.getId())
     --this._size
   }
 }
