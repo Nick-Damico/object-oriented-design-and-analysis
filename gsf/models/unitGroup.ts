@@ -1,5 +1,7 @@
 import Unit from './unit'
 
+type UnitMap = Map<string, Unit>
+
 class UnitGroup {
   private _units: Unit[]
   private _name: string
