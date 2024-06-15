@@ -7,7 +7,7 @@ class UnitGroup {
   private _name: string
   private _size: number
 
-  constructor(name: string, units: Unit[]) {
+  constructor(name: string, units: Unit[] = []) {
     this._name = name
     this.init(units)
   }
@@ -29,6 +29,7 @@ class UnitGroup {
     this._name = name
   }
 
+  // return units as an iteratable linkedlist or array
   getUnits(): UnitMap {
     return this._units
   }
