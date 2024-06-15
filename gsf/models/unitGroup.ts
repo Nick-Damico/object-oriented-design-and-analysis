@@ -17,6 +17,7 @@ class UnitGroup {
 
     for (let unit of units) {
       this._units.set(unit.getId(), unit)
+      ++this._size
     }
   }
 
