@@ -7,10 +7,17 @@ class UnitGroup {
   private _name: string
   private _size: number
 
-  constructor(name: string) {
+  constructor(name: string, units: Unit[]) {
     this._name = name
+    this.init(units)
+  }
+
+  private init(units: Unit[]) {
     this._units = new Map()
-    this._size = 0
+
+    for (let unit of units) {
+      this._units.set(unit.getId(), unit)
+    }
   }
 
   getName(): string {
