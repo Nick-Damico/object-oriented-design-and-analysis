@@ -42,8 +42,10 @@ class UnitGroup {
     ++this._size
   }
 
-  removeUnit(unit: Unit): void {
-    this.getUnits().delete(unit.getId())
+  removeUnit(id: string): void {
+    if (!this.getUnits().has(id)) return
+
+    this.getUnits().delete(id)
     --this._size
   }
 }
