@@ -1,8 +1,8 @@
 import Unit from './unit'
 
-type UnitMap = Map<string, Unit>
+export type UnitMap = Map<string, Unit>
 
-class UnitGroup {
+export default class UnitGroup {
   private _units: UnitMap
   private _name: string
   private _size: number
