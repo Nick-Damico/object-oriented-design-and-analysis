@@ -1,22 +1,47 @@
 import Station from './Station'
+import Connection from './Connection'
+
+interface LinkNode {
+  value: Station | Connection
+  next?: LinkNode
+  prev?: LinkNode
+}
+
+interface StationNode extends LinkNode {
+  value: Station
+}
+
+interface ConnectionNode extends LinkNode {
+  value: Connection
+}
 
 export default class Subway {
-  private _name: string
-  private _stations: Station[] // Make a LinkedList
+  private _stations: LinkNode
+  private _connections: LinkNode
   private _stationsCount: number
 
-  constructor(name: string) {
-    this._name = name
-  }
+  addStation(stationName: string): void {
+    let curNode = this._stations
 
-  getName(): string {
-    return this._name
-  }
+    while (curNode.next) {
+      curNode = curNode.next
+    }
 
-  addStation(name: string): void {
-    let newStation = new Station(name)
-
-    this._stations.push(newStation)
+    let newStation = new Station(stationName)
+    curNode.next = {
+      value: newStation,
+      prev: curNode
+    } as LinkNode
     ++this._stationsCount
+  }
+
+  addConnection(
+    lineName: string,
+    stationOneName: string,
+    stationTwoName: string
+  ) {}
+
+  hasStation(stationName: string): boolean {
+    return false
   }
 }
