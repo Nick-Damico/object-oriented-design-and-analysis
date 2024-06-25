@@ -47,8 +47,9 @@ export default class Subway {
   }
 
   addStation(stationName: string): void {
-    let curNode = this._stations
+    if (this.hasStation(stationName)) return
 
+    let curNode = this._stations
     while (curNode.next) {
       curNode = curNode.next
     }
