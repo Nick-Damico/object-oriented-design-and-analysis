@@ -1,24 +1,50 @@
 import Station from './Station'
 import Connection from './Connection'
 
-interface LinkNode {
-  value: Station | Connection
-  next?: LinkNode
-  prev?: LinkNode
+type StationNode = {
+  value?: Station
+  next?: StationNode
+  prev?: StationNode
 }
 
-interface StationNode extends LinkNode {
-  value: Station
-}
-
-interface ConnectionNode extends LinkNode {
-  value: Connection
+type ConnectionNode = {
+  value?: Connection
+  next?: ConnectionNode
+  prev?: ConnectionNode
 }
 
 export default class Subway {
-  private _stations: LinkNode
-  private _connections: LinkNode
+  private _stations: StationNode
   private _stationsCount: number
+
+  private _connections: ConnectionNode
+  private _connectionsTail: ConnectionNode
+  private _connectionsCount: number
+
+  constructor() {
+    this._initStations()
+    this._initConnections()
+  }
+
+  private _initStations(): void {
+    let dummyNode = {
+      value: undefined,
+      next: undefined,
+      prev: undefined
+    } as StationNode
+    this._stations = dummyNode
+    this._stationsCount = 0
+  }
+
+  private _initConnections(): void {
+    let dummyNode = {
+      value: undefined,
+      next: undefined,
+      prev: undefined
+    } as ConnectionNode
+    this._connections = dummyNode
+    this._connectionsCount = 0
+  }
 
   addStation(stationName: string): void {
     let curNode = this._stations
@@ -31,17 +57,41 @@ export default class Subway {
     curNode.next = {
       value: newStation,
       prev: curNode
-    } as LinkNode
+    } as StationNode
     ++this._stationsCount
   }
 
-  addConnection(
+  addConnection(connection: Connection): void {}
+
+  setupConnection(
     lineName: string,
     stationOneName: string,
     stationTwoName: string
-  ) {}
+  ) {
+    if (this.hasStation(stationOneName) && this.hasStation(stationTwoName)) {
+      let stationOne = new Station(stationOneName)
+      let stationTwo = new Station(stationTwoName)
+
+      let connection = new Connection(stationOne, stationTwo, lineName)
+      this.addConnection(connection)
+    } else {
+      throw Error('Invalid Connection')
+    }
+  }
 
   hasStation(stationName: string): boolean {
+    if (this._stationsCount === 0) return false
+
+    let curNode = this._stations
+
+    while (curNode.next) {
+      curNode = curNode.next
+
+      if (curNode.value?.getName() === stationName) {
+        return true
+      }
+    }
+
     return false
   }
 }
