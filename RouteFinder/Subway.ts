@@ -36,32 +36,12 @@ export default class Subway {
   }
 
   private _initConnections(): void {
-    let dummyNode = {
-      value: undefined,
-      next: undefined,
-      prev: undefined
-    } as ConnectionNode
+    let dummyNode = new LinkedListNode<Connection>()
     this._connections = dummyNode
+    this._connectionsHead = dummyNode
+    this._connectionsTail = dummyNode
     this._connectionsCount = 0
   }
-
-  addStation(stationName: string): void {
-    if (this.hasStation(stationName)) return
-
-    let curNode = this._stations
-    while (curNode.next) {
-      curNode = curNode.next
-    }
-
-    let newStation = new Station(stationName)
-    curNode.next = {
-      value: newStation,
-      prev: curNode
-    } as StationNode
-    ++this._stationsCount
-  }
-
-  addConnection(connection: Connection): void {}
 
   setupConnection(
     lineName: string,
@@ -79,7 +59,18 @@ export default class Subway {
     }
   }
 
-  hasStation(stationName: string): boolean {
+  addConnection(connection: Connection): void {
+    if (this.hasConnection(connection.getName())) return
+
+    let curTail = this._connectionsTail
+    let newNode = new LinkedListNode(connection)
+
+    curTail.next = newNode
+    newNode.prev = curTail
+    this._connectionsTail = newNode
+    ++this._connectionsCount
+  }
+
     if (this._stationsCount === 0) return false
 
     let curNode = this._stations
