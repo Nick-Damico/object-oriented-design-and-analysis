@@ -11,6 +11,10 @@ export default class Connection {
     this._lineName = lineName
   }
 
+  getName() {
+    return this._lineName
+  }
+
   getStation1(): Station {
     return this._station1
   }
