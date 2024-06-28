@@ -28,12 +28,10 @@ export default class Subway {
   }
 
   private _initStations(): void {
-    let dummyNode = {
-      value: undefined,
-      next: undefined,
-      prev: undefined
-    } as StationNode
+    let dummyNode = new LinkedListNode<Station>()
     this._stations = dummyNode
+    this._stationsHead = dummyNode
+    this._stationsTail = dummyNode
     this._stationsCount = 0
   }
 
