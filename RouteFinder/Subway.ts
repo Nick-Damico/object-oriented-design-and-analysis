@@ -12,11 +12,14 @@ class LinkedListNode<T> {
 }
 
 export default class Subway {
-  private _stations: StationNode
+  private _stations: LinkedListNode<Station>
+  private _stationsHead: LinkedListNode<Station>
+  private _stationsTail: LinkedListNode<Station>
   private _stationsCount: number
 
-  private _connections: ConnectionNode
-  private _connectionsTail: ConnectionNode
+  private _connections: LinkedListNode<Connection>
+  private _connectionsHead: LinkedListNode<Connection>
+  private _connectionsTail: LinkedListNode<Connection>
   private _connectionsCount: number
 
   constructor() {
