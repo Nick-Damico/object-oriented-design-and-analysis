@@ -71,6 +71,23 @@ export default class Subway {
     ++this._connectionsCount
   }
 
+  hasConnection(name: string): boolean {
+    if (this._connectionsCount == 0) return false
+
+    let curNode = this._connectionsHead.next
+
+    while (curNode) {
+      let connectionName = curNode.value?.getName()
+      if (connectionName === name) {
+        return true
+      }
+
+      curNode = curNode.next
+    }
+
+    return false
+  }
+
     if (this._stationsCount === 0) return false
 
     let curNode = this._stations
