@@ -88,16 +88,31 @@ export default class Subway {
     return false
   }
 
+  addStation(name: string): void {
+    if (this.hasStation(name)) return
+
+    let curTail = this._stationsTail
+    let newStation = new Station(name)
+    let newNode = new LinkedListNode(newStation)
+
+    curTail.next = newNode
+    newNode.prev = curTail
+    this._stationsTail = newNode
+    ++this._stationsCount
+  }
+
+  hasStation(name: string): boolean {
     if (this._stationsCount === 0) return false
 
-    let curNode = this._stations
+    let curNode = this._stationsHead.next
 
-    while (curNode.next) {
-      curNode = curNode.next
-
-      if (curNode.value?.getName() === stationName) {
+    while (curNode) {
+      let stationName = curNode.value?.getName()
+      if (stationName === name) {
         return true
       }
+
+      curNode = curNode.next
     }
 
     return false
