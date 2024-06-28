@@ -2,9 +2,13 @@ import Station from './Station'
 import Connection from './Connection'
 
 class LinkedListNode<T> {
-  public value: T | null = null
+  public value?: T
   public next: LinkedListNode<T> | null = null
   public prev: LinkedListNode<T> | null = null
+
+  constructor(value?: T | undefined) {
+    this.value = value
+  }
 }
 
 export default class Subway {
