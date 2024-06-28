@@ -1,16 +1,10 @@
 import Station from './Station'
 import Connection from './Connection'
 
-type StationNode = {
-  value?: Station
-  next?: StationNode
-  prev?: StationNode
-}
-
-type ConnectionNode = {
-  value?: Connection
-  next?: ConnectionNode
-  prev?: ConnectionNode
+class LinkedListNode<T> {
+  public value: T | null = null
+  public next: LinkedListNode<T> | null = null
+  public prev: LinkedListNode<T> | null = null
 }
 
 export default class Subway {
