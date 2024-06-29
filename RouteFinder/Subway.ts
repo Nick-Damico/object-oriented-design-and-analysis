@@ -64,6 +64,20 @@ export default class Subway {
     ++this._stationsCount
   }
 
+  getStations(): Station[] {
+    let stations: Station[] = []
+
+    let curNode = this._stationsHead.next
+    while (curNode) {
+      if (curNode.value) {
+        stations.push(curNode.value)
+      }
+      curNode = curNode.next
+    }
+
+    return stations
+  }
+
   private addConnection(connection: Connection): void {
     if (this.hasConnection(connection.getName())) return
 
