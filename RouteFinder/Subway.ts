@@ -23,35 +23,27 @@ export default class Subway {
   private _connectionsCount: number
 
   constructor() {
-    this._initStations()
-    this._initConnections()
-  }
-
-  private _initStations(): void {
-    let dummyNode = new LinkedListNode<Station>()
-    this._stations = dummyNode
-    this._stationsHead = dummyNode
-    this._stationsTail = dummyNode
+    let stationNode = new LinkedListNode<Station>()
+    this._stations = stationNode
+    this._stationsHead = stationNode
+    this._stationsTail = stationNode
     this._stationsCount = 0
-  }
 
-  private _initConnections(): void {
-    let dummyNode = new LinkedListNode<Connection>()
-    this._connections = dummyNode
-    this._connectionsHead = dummyNode
-    this._connectionsTail = dummyNode
+    let connectionNode = new LinkedListNode<Connection>()
+    this._connections = connectionNode
+    this._connectionsHead = connectionNode
+    this._connectionsTail = connectionNode
     this._connectionsCount = 0
   }
 
-  setupConnection(
-    lineName: string,
+  buildConnection(
     stationOneName: string,
-    stationTwoName: string
+    stationTwoName: string,
+    lineName: string
   ) {
     if (this.hasStation(stationOneName) && this.hasStation(stationTwoName)) {
       let stationOne = new Station(stationOneName)
       let stationTwo = new Station(stationTwoName)
-
       let connection = new Connection(stationOne, stationTwo, lineName)
       this.addConnection(connection)
     } else {
@@ -84,7 +76,7 @@ export default class Subway {
     ++this._connectionsCount
   }
 
-  hasConnection(name: string): boolean {
+  private hasConnection(name: string): boolean {
     if (this._connectionsCount == 0) return false
 
     let curNode = this._connectionsHead.next
@@ -101,20 +93,7 @@ export default class Subway {
     return false
   }
 
-  addStation(name: string): void {
-    if (this.hasStation(name)) return
-
-    let curTail = this._stationsTail
-    let newStation = new Station(name)
-    let newNode = new LinkedListNode(newStation)
-
-    curTail.next = newNode
-    newNode.prev = curTail
-    this._stationsTail = newNode
-    ++this._stationsCount
-  }
-
-  hasStation(name: string): boolean {
+  private hasStation(name: string): boolean {
     if (this._stationsCount === 0) return false
 
     let curNode = this._stationsHead.next
