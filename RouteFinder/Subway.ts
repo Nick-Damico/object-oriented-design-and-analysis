@@ -78,9 +78,11 @@ export default class Subway {
     return stations
   }
 
-  private addConnection(connection: Connection): void {
-    if (this.hasConnection(connection.getName())) return
+  getConnections(): LinkedListNode<Connection> {
+    return this._connections
+  }
 
+  private addConnection(connection: Connection): void {
     let curTail = this._connectionsTail
     let newNode = new LinkedListNode(connection)
 
