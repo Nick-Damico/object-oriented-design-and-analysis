@@ -50,8 +50,7 @@ class SubwayLoader {
     for (let name of stations) {
       this._subway.addStation(name)
     }
-
-    console.debug(this._subway.getStations())
+    console.log('Done Processing Stations')
   }
 }
 
