@@ -32,9 +32,11 @@ class SubwayLoader {
   loadFromFile(fileName: string): void {
     let file = new File(fileName)
     let fileContents = file.read()
+    let [stations, ...lines] = fileContents.split(/\n\s*\n/)
+    this._loadStations(stations.split(/\n/))
 
-    for (let connection of connections) {
-      this._processConnections(connection.split(/\n/))
+    for (let line of lines) {
+      this._loadLines(line.split(/\n/))
     }
   }
 
@@ -42,7 +44,7 @@ class SubwayLoader {
 
   // private loadLine(subway: Subway): void {}
 
-  private _processConnections(names: string[]): void {
+  private _loadLines(names: string[]): void {
     if (names.length === 0) return
 
     let [lineName, ...stations] = names
@@ -57,7 +59,7 @@ class SubwayLoader {
     console.log('Done Processing Connections')
   }
 
-  private _processStations(stations: string[]): void {
+  private _loadStations(stations: string[]): void {
     for (let name of stations) {
       this._subway.addStation(name)
     }
