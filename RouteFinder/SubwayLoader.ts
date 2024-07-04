@@ -6,6 +6,22 @@ import Connection from './Connection'
 import { constants } from 'fs/promises'
 import { error } from 'console'
 
+class File {
+  private _filePath: string
+
+  constructor(fileName: string) {
+    let filePath = path.join(__dirname, 'lib', fileName)
+    if (!fs.existsSync(filePath))
+      throw new Error(`File ${fileName} does not exist`)
+
+    this._filePath = filePath
+  }
+
+  read(): string {
+    return fs.readFileSync(this._filePath, 'utf-8')
+  }
+}
+
 class SubwayLoader {
   private _subway: Subway
 
@@ -14,13 +30,8 @@ class SubwayLoader {
   }
 
   loadFromFile(fileName: string): void {
-    const filePath = path.join(__dirname, 'lib', fileName)
-    if (!fs.existsSync(filePath))
-      throw new Error(`File ${fileName} does not exist`)
-
-    let fileContents = fs.readFileSync(filePath, 'utf-8').trim()
-    let [stations, ...connections] = fileContents.split(/\n\s*\n/)
-    this._processStations(stations.split(/\n/))
+    let file = new File(fileName)
+    let fileContents = file.read()
 
     for (let connection of connections) {
       this._processConnections(connection.split(/\n/))
