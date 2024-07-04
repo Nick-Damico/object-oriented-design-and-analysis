@@ -40,10 +40,6 @@ class SubwayLoader {
     }
   }
 
-  // private loadStations(subway: Subway): void {}
-
-  // private loadLine(subway: Subway): void {}
-
   private _loadLines(names: string[]): void {
     if (names.length === 0) return
 
