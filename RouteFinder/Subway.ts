@@ -115,18 +115,10 @@ export default class Subway {
   }
 
   getStations(): Station[] {
-    let stations: Station[] = []
-
-    let curNode = this._stationsHead.next
-    while (curNode) {
-      if (curNode.value) {
-        stations.push(curNode.value)
-      }
-      curNode = curNode.next
-    }
-
-    return stations
+    return this._stations.toArray()
   }
+
+  get Directions(starting: string, destination: string): Connection[] {}
 
   getConnections(): LinkedListNode<Connection> {
     return this._connections
