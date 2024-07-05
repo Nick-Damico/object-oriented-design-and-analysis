@@ -94,16 +94,17 @@ export default class Subway {
     this._connections = new LinkedList<Connection>()
   }
 
-  buildConnection(
+  addConnection(
     stationOneName: string,
     stationTwoName: string,
     lineName: string
-  ) {
+  ): void {
     if (this.hasStation(stationOneName) && this.hasStation(stationTwoName)) {
       let stationOne = new Station(stationOneName)
       let stationTwo = new Station(stationTwoName)
       let connection = new Connection(stationOne, stationTwo, lineName)
-      this.addConnection(connection)
+      this._connections.add(connection)
+      this._addToNetwork(stationOne, stationTwo)
     } else {
       throw Error('Invalid Connection')
     }
@@ -123,11 +124,7 @@ export default class Subway {
     return this._connections.toArray()
   }
 
-  }
-
-  private addConnection(connection: Connection): void {
-    this._connections.add(connection)
-  }
+  // get Directions(starting: string, destination: string): Connection[] {}
 
   private hasStation(name: string): boolean {
     if (this._stations.size() === 0) return false
@@ -137,14 +134,5 @@ export default class Subway {
       .map((station) => station.getName())
 
     return stationNames.includes(name)
-  }
-
-        return true
-      }
-
-      curNode = curNode.next
-    }
-
-    return false
   }
 }

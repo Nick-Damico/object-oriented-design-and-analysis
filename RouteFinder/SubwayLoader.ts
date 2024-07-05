@@ -49,7 +49,7 @@ class SubwayLoader {
     for (let i = 0; i < stations.length - 1; ++i) {
       let stationName1 = stations[i]
       let stationName2 = stations[i + 1]
-      this._subway.buildConnection(stationName1, stationName2, lineName)
+      this._subway.addConnection(stationName1, stationName2, lineName)
     }
 
     console.log('Done Processing Connections')
