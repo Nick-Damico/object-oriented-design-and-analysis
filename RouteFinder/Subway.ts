@@ -84,12 +84,14 @@ class LinkedList<T> {
 }
 
 export default class Subway {
+  private _network: Map<Station, ListNode<Station>> // TODO update
   private _stations: LinkedList<Station>
   private _connections: LinkedList<Connection>
-  
+
   constructor() {
-    this._stations = new LinkedList<Station>
-    this._connections = new LinkedList<Connection>
+    this._network = new Map()
+    this._stations = new LinkedList<Station>()
+    this._connections = new LinkedList<Connection>()
   }
 
   buildConnection(
