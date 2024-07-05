@@ -1,39 +1,36 @@
 import Station from './Station'
 import Connection from './Connection'
 
-class LinkedListNode<T> {
+class ListNode<T> {
   public value?: T
-  public next: LinkedListNode<T> | null = null
-  public prev: LinkedListNode<T> | null = null
-
+  public next: ListNode<T> | null = null
+  public prev: ListNode<T> | null = null
   constructor(value?: T | undefined) {
     this.value = value
+  }
+
+}
+
+class LinkedList<T> {
+  private _head: ListNode<T>
+  private _tail: ListNode<T>
+  private _size: number
+
+  constructor() {
+    let newNode = new ListNode<T>()
+    this._head = newNode
+    this._tail = this._head
+    this._size = 0 // we do not count the dummy node
   }
 }
 
 export default class Subway {
-  private _stations: LinkedListNode<Station>
-  private _stationsHead: LinkedListNode<Station>
-  private _stationsTail: LinkedListNode<Station>
-  private _stationsCount: number
-
-  private _connections: LinkedListNode<Connection>
-  private _connectionsHead: LinkedListNode<Connection>
-  private _connectionsTail: LinkedListNode<Connection>
-  private _connectionsCount: number
-
+  private _stations: LinkedList<Station>
+  private _connections: LinkedList<Connection>
+  
   constructor() {
-    let stationNode = new LinkedListNode<Station>()
-    this._stations = stationNode
-    this._stationsHead = stationNode
-    this._stationsTail = stationNode
-    this._stationsCount = 0
-
-    let connectionNode = new LinkedListNode<Connection>()
-    this._connections = connectionNode
-    this._connectionsHead = connectionNode
-    this._connectionsTail = connectionNode
-    this._connectionsCount = 0
+    this._stations = new LinkedList<Station>
+    this._connections = new LinkedList<Connection>
   }
 
   buildConnection(
