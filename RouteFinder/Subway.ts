@@ -8,7 +8,6 @@ class ListNode<T> {
   constructor(value?: T | undefined) {
     this.value = value
   }
-
 }
 
 class LinkedList<T> {
@@ -41,7 +40,7 @@ class LinkedList<T> {
   }
 
   contains(value: T): boolean {
-    return this.indexOf(value) >= 0    
+    return this.indexOf(value) >= 0
   }
 
   indexOf(value: T): number {
@@ -61,7 +60,7 @@ class LinkedList<T> {
   }
 
   toArray(): T[] {
-    let collection: T[] = [] 
+    let collection: T[] = []
     let currentNode = this._head.next
 
     while (currentNode) {
@@ -118,43 +117,22 @@ export default class Subway {
     return this._stations.toArray()
   }
 
-  get Directions(starting: string, destination: string): Connection[] {}
+  getConnections(): Connection[] {
+    return this._connections.toArray()
+  }
 
-  getConnections(): LinkedListNode<Connection> {
-    return this._connections
   }
 
   private addConnection(connection: Connection): void {
-    let curTail = this._connectionsTail
-    let newNode = new LinkedListNode(connection)
-
-    curTail.next = newNode
-    newNode.prev = curTail
-    this._connectionsTail = newNode
-    ++this._connectionsCount
-  }
-
-  private hasConnection(name: string): boolean {
-    if (this._connectionsCount == 0) return false
-
-    let curNode = this._connectionsHead.next
-
-    while (curNode) {
-      let connectionName = curNode.value?.getName()
-      if (connectionName === name) {
-        return true
-      }
-
-      curNode = curNode.next
-    }
-
-    return false
+    this._connections.add(connection)
   }
 
   private hasStation(name: string): boolean {
     if (this._stations.size() === 0) return false
 
-    let stationNames = this._stations.toArray().map((station) => station.getName())
+    let stationNames = this._stations
+      .toArray()
+      .map((station) => station.getName())
 
     return stationNames.includes(name)
   }
