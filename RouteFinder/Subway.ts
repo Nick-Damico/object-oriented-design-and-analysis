@@ -3,7 +3,7 @@ import Connection from './Connection'
 import LinkedList, { ListNode } from './LinkedList'
 
 export default class Subway {
-  private _network: Map<Station, ListNode<Station>> // TODO update
+  private _network: Map<Station, LinkedList<Station>>
   private _stations: LinkedList<Station>
   private _connections: LinkedList<Connection>
 
@@ -53,5 +53,19 @@ export default class Subway {
       .map((station) => station.getName())
 
     return stationNames.includes(name)
+  }
+
+  private _addToNetwork(station1: Station, station2: Station): void {
+    if (this._network.has(station1)) {
+      let connectingStations = this._network.get(station1)
+      if (connectingStations && !connectingStations.contains(station2)) {
+        connectingStations.add(station2)
+      }
+    } else {
+      let newStationList = new LinkedList<Station>()
+      newStationList.add(station2)
+
+      this._network.set(station1, newStationList)
+    }
   }
 }
