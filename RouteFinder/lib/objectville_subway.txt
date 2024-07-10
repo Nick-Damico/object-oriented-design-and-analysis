@@ -20,7 +20,7 @@ Ajax Rapids
 HTML Heights
 JavaBeans Boulevard
 LSP Lane
-Head First Lane
+OOA&D Oval
 Objectville PizzaStore
 UML Walk
 Ajax Rapids
